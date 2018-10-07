@@ -80,7 +80,7 @@ export class Location extends React.Component {
     super(props);
 
   }
-  makeVis(event) {
+  makeVis = (event) => {
     //this.setState({height:20})
     console.log("pressed")
     console.log(this.state)
@@ -108,7 +108,7 @@ export class Location extends React.Component {
 
         />
 
-        <View height={0} style={{ flexDirection: "row" }}>
+        <View style={{ flexDirection: "row" }}>
           <Text style={styles.leftTick}> 1</Text>
           <Text style={styles.rightTick}>10</Text>
         </View>
@@ -116,6 +116,35 @@ export class Location extends React.Component {
     );
   }
 }
+
+export class SliderAndSubmit extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <View>
+        <Slider
+          style={styles.slider}
+          step={1}
+          minimumValue={1}
+          maximumValue={10}
+          minimumTrackTintColor={"white"}
+          maximumTrackTintColor={"white"}
+          thumbTintColor={"#fff"}
+        //height = {0}
+
+        />
+
+        <View height={0} style={{ flexDirection: "row" }}>
+          <Text style={styles.leftTick}> 1</Text>
+          <Text style={styles.rightTick}>10</Text>
+        </View>
+      </View>
+    )
+  }
+}
+
 
 const styles = StyleSheet.create({
   container: {
