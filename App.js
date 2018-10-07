@@ -78,12 +78,21 @@ export default class App extends React.Component {
 export class Location extends React.Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      number: 0,
+    }
+  }
+  getVal(val) {
+    console.warn(val);
   }
   makeVis = (event) => {
     //this.setState({height:20})
+    this.setState({
+      number: this.state.number
+    })
     console.log("pressed")
     console.log(this.state)
+    console.log(this.getVal())
   }
   render() {
     return (
@@ -104,6 +113,7 @@ export class Location extends React.Component {
           minimumTrackTintColor={"white"}
           maximumTrackTintColor={"white"}
           thumbTintColor={"#fff"}
+          onSlidingComplete={val => this.getVal(val)}
         //height = {0}
 
         />
