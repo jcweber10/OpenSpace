@@ -4,10 +4,7 @@ import {
   Text,
   View,
   ScrollView,
-  Slider,
-  SliderComponent,
   SafeAreaView,
-  Button,
   TouchableOpacity
 } from "react-native";
 import { db } from "./config/db"
@@ -56,7 +53,7 @@ export default class App extends React.Component {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
         <ScrollView style={styles.scroll}>
-          <Text style={styles.headerText}>Please Pick Your Location</Text>
+          <Text style={styles.headerText}>Pick the Location You Want to Know About</Text>
 
           {this.renderLocation("Rams")}
           {this.renderLocation("Fetzer")}
@@ -79,17 +76,22 @@ export class Location extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      number: 1,
+      number: 5,
+      name: '',
+      color: '#001e4c',
+      isVis:false,
     }
   }
   getVal(val) {
-    console.warn(val);
+    //console.warn(val);
   }
   makeVis = (event) => {
-    //this.setState({height:20})
     this.setState({
-      number: this.state.number
+      number: this.state.number,
+      isVis:!this.state.isVis,
     })
+
+    //
     console.log("pressed")
     console.log(this.state)
     console.log(this.state.number)
@@ -105,58 +107,12 @@ export class Location extends React.Component {
           <Text style={styles.buttonText}>{this.props.name}</Text>
         </TouchableOpacity>
 
-        <Slider
-          style={styles.slider}
-          step={1}
-          minimumValue={1}
-          maximumValue={10}
-          minimumTrackTintColor={"white"}
-          maximumTrackTintColor={"white"}
-          thumbTintColor={"#fff"}
-          onValueChange={val => this.setState({ number: val })}
-          onSlidingComplete={val => this.getVal(val)}
+        <Text style = {this.state.isVis ? styles.subTextAnswer: styles.hiddenText}> 5 </Text>
 
-        //height = {0}
-
-        />
-
-        <View style={{ flexDirection: "row" }}>
-          <Text style={styles.leftTick}> 1</Text>
-          <Text style={styles.rightTick}>10</Text>
         </View>
-      </View>
     );
   }
 }
-
-export class SliderAndSubmit extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <View>
-        <Slider
-          style={styles.slider}
-          step={1}
-          minimumValue={1}
-          maximumValue={10}
-          minimumTrackTintColor={"white"}
-          maximumTrackTintColor={"white"}
-          thumbTintColor={"#fff"}
-        //height = {0}
-
-        />
-
-        <View height={0} style={{ flexDirection: "row" }}>
-          <Text style={styles.leftTick}> 1</Text>
-          <Text style={styles.rightTick}>10</Text>
-        </View>
-      </View>
-    )
-  }
-}
-
 
 const styles = StyleSheet.create({
   container: {
@@ -197,14 +153,19 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 27,
-    color: "white"
+    color: "white",
+    textAlign : 'center',
+    // marginBottom : 5
   },
 
-  subText: {
-    fontSize: 15,
-    color: "white"
+  hiddenText: {
+    height:0,
   },
-
+  subTextAnswer:{
+    color: "white",
+    textAlign: 'center',
+    marginBottom: 5,
+  },
   headerText: {
     fontSize: 25,
     textAlign: "center",
@@ -213,23 +174,5 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
 
-  leftTick: {
-    flex: 1,
-    marginLeft: 15,
-    alignSelf: "stretch",
-    flexDirection: "row",
-    color: "white",
-    textAlign: "left"
-    // justifyContent: 'space-between'
-  },
-
-  rightTick: {
-    flex: 1,
-    marginRight: 15,
-    alignSelf: "stretch",
-    flexDirection: "row",
-    color: "white",
-    textAlign: "right"
-    // justifyContent: 'space-between'
-  }
+  
 });
