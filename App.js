@@ -5,7 +5,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 // import { db } from "./config/db"
 import { Location } from "./Location"
 import {HiddenLocation} from "./HiddenLocation";
-
+console.disableYellowBox = true;
 class HomeScreen extends React.Component {
   render() {
 
@@ -41,7 +41,7 @@ class HomeScreen extends React.Component {
   }
 }
 
-class SettingsScreen extends React.Component {
+class GetReport extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -99,7 +99,7 @@ class SettingsScreen extends React.Component {
   }
 }
 
-class DetailsScreen extends React.Component {
+class MakeReport extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -143,7 +143,7 @@ class DetailsScreen extends React.Component {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
         <ScrollView style={styles.scroll}>
-          <Text style={styles.headerText}>Pick the Location You Want to Know About</Text>
+          <Text style={styles.headerText}>Pick the Location You Want to Tell About</Text>
 
           {this.renderLocation("Rams")}
           {this.renderLocation("Fetzer")}
@@ -165,12 +165,12 @@ class DetailsScreen extends React.Component {
 
 const HomeStack = createStackNavigator({
   Home: { screen: HomeScreen },
-  Details: { screen: DetailsScreen },
+  Details: { screen: MakeReport },
 });
 
 const SettingsStack = createStackNavigator({
-  Settings: { screen: SettingsScreen },
-  Details: { screen: DetailsScreen },
+  Settings: { screen: GetReport },
+  Details: { screen: MakeReport },
 });
 
 export default createBottomTabNavigator(
