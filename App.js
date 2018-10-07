@@ -159,14 +159,12 @@ export default class App extends React.Component {
             <Text style={styles.leftTick}> 1</Text>
             <Text style={styles.rightTick}>10</Text>
           </View> */}
+          
         </ScrollView>
       </SafeAreaView>
     );
   }
-  makeVis(event){
-    //this.setState({height:20})
-    console.log("pressed")
-  }
+  
 
   changeDimensions = () => {
     this.setState({ height: 0 }, { width: 0 });
@@ -176,16 +174,22 @@ export default class App extends React.Component {
 export class Location extends React.Component {
   constructor(props) {
     super(props);
+    
+  }
+  makeVis(event){
+    //this.setState({height:20})
+    console.log("pressed")
+    console.log(this.state)
   }
   render() {
     return (
       <View >
-        <TouchableOpacity  
+        <TouchableOpacity  onPress={this.makeVis()}
   title="Press Me" style={styles.button}>
           <Text style={styles.buttonText}>{this.props.name}</Text>
         </TouchableOpacity>
 
-        <Slider onPress={this.makeVis}
+        <Slider 
           style={styles.slider}
           step={1}
           minimumValue={1}
