@@ -44,8 +44,13 @@ export default class App extends React.Component {
     };
   }
 
+  handlePress(e) {
+    console.log("Button pressed");
+  }
+
   renderLocation(location) {
-    return <Location name={location} />;
+    return <Location
+      name={location} />;
   }
   render() {
     return (
@@ -84,7 +89,10 @@ export class Location extends React.Component {
     return (
       <View >
         <TouchableOpacity
-          title="Press Me" style={styles.button}>
+          title="Press Me"
+          style={styles.button}
+          onPress={this.makeVis}
+        >
           <Text style={styles.buttonText}>{this.props.name}</Text>
         </TouchableOpacity>
 
