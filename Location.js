@@ -10,6 +10,8 @@ import {
     Button,
     TouchableOpacity
 } from "react-native";
+
+import { db } from "./config/db"
 export default class Location extends React.Component {
     constructor(props) {
         super(props);
@@ -138,3 +140,23 @@ const styles = StyleSheet.create({
         // justifyContent: 'space-between'
     }
 });
+
+export function writeNewPost(location, rating, timestamp) {
+    // A post entry.
+    var postData = {
+        location: location,
+        rating: rating,
+        timestamp: timestamp,
+    };
+
+    // Get a key for a new Post.
+    var newPostKey = db.ref().child('entries').push().key;
+
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    var updates = {};
+    updates['/entries/' + newPostKey] = postData;
+
+    return db.ref().update(updates);
+}
+
+export { Location };

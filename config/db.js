@@ -7,5 +7,11 @@ let config = {
     storageBucket: "hacknc2018-61a70.appspot.com",
     messagingSenderId: "531629837159"
 };
-let app = Firebase.initializeApp(config);
+let app;
+if (!Firebase.apps.length) {
+    app = Firebase.initializeApp(config);
+} else {
+    app = Firebase.app();
+}
+// let app = Firebase.initializeApp(config);
 export const db = app.database();
