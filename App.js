@@ -79,7 +79,7 @@ export class Location extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      number: 0,
+      number: 1,
     }
   }
   getVal(val) {
@@ -92,7 +92,7 @@ export class Location extends React.Component {
     })
     console.log("pressed")
     console.log(this.state)
-    console.log(this.getVal())
+    console.log(this.state.number)
   }
   render() {
     return (
@@ -113,7 +113,9 @@ export class Location extends React.Component {
           minimumTrackTintColor={"white"}
           maximumTrackTintColor={"white"}
           thumbTintColor={"#fff"}
+          onValueChange={val => this.setState({ number: val })}
           onSlidingComplete={val => this.getVal(val)}
+
         //height = {0}
 
         />
