@@ -10,8 +10,7 @@ import {
   Button,
   TouchableOpacity
 } from "react-native";
-//import { fb } from "./fb.js";
-// import firebase from "react-native-firebase";
+import { db } from "./config/db"
 
 export default class App extends React.Component {
   constructor(props) {
@@ -184,8 +183,8 @@ export class Location extends React.Component {
   render() {
     return (
       <View >
-        <TouchableOpacity  onPress={this.makeVis()}
-  title="Press Me" style={styles.button}>
+        <TouchableOpacity
+          title="Press Me" style={styles.button}>
           <Text style={styles.buttonText}>{this.props.name}</Text>
         </TouchableOpacity>
 
@@ -197,11 +196,11 @@ export class Location extends React.Component {
           minimumTrackTintColor={"white"}
           maximumTrackTintColor={"white"}
           thumbTintColor={"#fff"}
-          //height = {0}
-          
+        //height = {0}
+
         />
 
-        <View height = {0} style={{ flexDirection: "row" }}>
+        <View height={0} style={{ flexDirection: "row" }}>
           <Text style={styles.leftTick}> 1</Text>
           <Text style={styles.rightTick}>10</Text>
         </View>
