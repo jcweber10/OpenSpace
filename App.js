@@ -80,18 +80,18 @@ export class Location extends React.Component {
     super(props);
     this.state = {
       number: 1,
+      name: "test"
     }
   }
   getVal(val) {
     console.warn(val);
   }
   makeVis = (event) => {
-    //this.setState({height:20})
-    this.setState({
-      number: this.state.number
-    })
+    let day = new Date();
+    let date = day.getFullYear().toString() + (day.getMonth() > 9 ? "" : "0") + day.getMonth().toString() + (day.getDay() > 9 ? "" : "0") + day.getDay().toString() + (day.getHours() > 9 ? "" : "0") + day.getHours().toString() + (day.getMinutes() > 9 ? "" : "0") + day.getMinutes().toString() + (day.getSeconds() > 9 ? "" : "0") + day.getSeconds().toString();
+    writeNewPost(this.props.name, this.state.number, date);
     console.log("pressed")
-    console.log(this.state)
+    console.log(this.props.name)
     console.log(this.state.number)
   }
   render() {
@@ -233,3 +233,24 @@ const styles = StyleSheet.create({
     // justifyContent: 'space-between'
   }
 });
+
+
+
+
+function writeNewPost(location, rating, timestamp) {
+  // A post entry.
+  var postData = {
+    location: location,
+    rating: rating,
+    timestamp: timestamp,
+  };
+
+  // Get a key for a new Post.
+  var newPostKey = db.ref().child('entries').push().key;
+
+  // Write the new post's data simultaneously in the posts list and the user's post list.
+  var updates = {};
+  updates['/entries/' + newPostKey] = postData;
+
+  return db.ref().update(updates);
+}
