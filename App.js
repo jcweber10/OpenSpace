@@ -54,7 +54,11 @@ export default class App extends React.Component {
         <ScrollView style={styles.scroll}>
           <Text style={styles.headerText}>Please Pick Your Location</Text>
 
-          {this.renderLocation("location", 5)}
+          {this.renderLocation("Rams")}
+          {this.renderLocation("Fetzer")}
+          {this.renderLocation("Woollen")}
+          {this.renderLocation("Hooker")}
+          {this.renderLocation("SRC")}
           {/* renderLocation("test"); */}
 
           {/* <TouchableOpacity style={styles.button} onPress={this.showFetzer}>
@@ -159,9 +163,9 @@ export default class App extends React.Component {
       </SafeAreaView>
     );
   }
-  showFetzer(event) {
-    this.setState({ height: 0 });
-    console.log("clicked on fetzer");
+  makeVis(event){
+    //this.setState({height:20})
+    console.log("pressed")
   }
 
   changeDimensions = () => {
@@ -175,12 +179,13 @@ export class Location extends React.Component {
   }
   render() {
     return (
-      <View>
-        <TouchableOpacity style={styles.button}>
+      <View >
+        <TouchableOpacity  
+  title="Press Me" style={styles.button}>
           <Text style={styles.buttonText}>{this.props.name}</Text>
         </TouchableOpacity>
 
-        <Slider
+        <Slider onPress={this.makeVis}
           style={styles.slider}
           step={1}
           minimumValue={1}
@@ -188,9 +193,11 @@ export class Location extends React.Component {
           minimumTrackTintColor={"white"}
           maximumTrackTintColor={"white"}
           thumbTintColor={"#fff"}
+          //height = {0}
+          
         />
 
-        <View style={{ flexDirection: "row" }}>
+        <View height = {0} style={{ flexDirection: "row" }}>
           <Text style={styles.leftTick}> 1</Text>
           <Text style={styles.rightTick}>10</Text>
         </View>
@@ -210,7 +217,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#5eb4ff",
     padding: 2,
-    color: "#000",
     marginBottom: 10,
     borderRadius: 5,
     marginLeft: "4%",
