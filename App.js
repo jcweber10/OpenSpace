@@ -58,112 +58,12 @@ export default class App extends React.Component {
           {this.renderLocation("Woollen")}
           {this.renderLocation("Hooker")}
           {this.renderLocation("SRC")}
-          {/* renderLocation("test"); */}
 
-          {/* <TouchableOpacity style={styles.button} onPress={this.showFetzer}>
-            <Text style={styles.buttonText}>Fetzer Hall</Text>
-          </TouchableOpacity>
-
-          <Slider
-            style={styles.slider}
-            step={1}
-            minimumValue={1}
-            maximumValue={10}
-            minimumTrackTintColor={"white"}
-            maximumTrackTintColor={"white"}
-            thumbTintColor={"#fff"}
-          />
-
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.leftTick}> 1</Text>
-            <Text style={styles.rightTick}>10</Text>
-          </View>
-
-          <TouchableOpacity style={styles.submitButton}>
-            <Text style={styles.subText}>Submit</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Woollen Gym</Text>
-          </TouchableOpacity>
-
-          <Slider
-            style={styles.slider}
-            step={1}
-            minimumValue={1}
-            maximumValue={10}
-            minimumTrackTintColor={"white"}
-            maximumTrackTintColor={"white"}
-            thumbTintColor={"#fff"}
-          />
-
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.leftTick}> 1</Text>
-            <Text style={styles.rightTick}>10</Text>
-          </View>
-
-          <TouchableOpacity label={"rams"} style={styles.button}>
-            <Text style={styles.buttonText}>Ram's Gym</Text>
-          </TouchableOpacity>
-
-          <Slider
-            style={styles.slider}
-            step={1}
-            minimumValue={1}
-            maximumValue={10}
-            minimumTrackTintColor={"white"}
-            maximumTrackTintColor={"white"}
-            thumbTintColor={"#fff"}
-          />
-
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.leftTick}> 1</Text>
-            <Text style={styles.rightTick}>10</Text>
-          </View>
-
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Hooker Fields</Text>
-          </TouchableOpacity>
-
-          <Slider
-            style={styles.slider}
-            step={1}
-            minimumValue={1}
-            maximumValue={10}
-            minimumTrackTintColor={"white"}
-            maximumTrackTintColor={"white"}
-            thumbTintColor={"#fff"}
-          />
-
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.leftTick}> 1</Text>
-            <Text style={styles.rightTick}>10</Text>
-          </View>
-
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>SRC</Text>
-          </TouchableOpacity>
-
-          <Slider
-            style={styles.slider}
-            step={1}
-            minimumValue={1}
-            maximumValue={10}
-            minimumTrackTintColor={"white"}
-            maximumTrackTintColor={"white"}
-            thumbTintColor={"#fff"}
-          />
-
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.leftTick}> 1</Text>
-            <Text style={styles.rightTick}>10</Text>
-          </View> */}
-          
         </ScrollView>
       </SafeAreaView>
     );
   }
-  
+
 
   changeDimensions = () => {
     this.setState({ height: 0 }, { width: 0 });
@@ -173,9 +73,9 @@ export default class App extends React.Component {
 export class Location extends React.Component {
   constructor(props) {
     super(props);
-    
+
   }
-  makeVis(event){
+  makeVis(event) {
     //this.setState({height:20})
     console.log("pressed")
     console.log(this.state)
@@ -188,7 +88,7 @@ export class Location extends React.Component {
           <Text style={styles.buttonText}>{this.props.name}</Text>
         </TouchableOpacity>
 
-        <Slider 
+        <Slider
           style={styles.slider}
           step={1}
           minimumValue={1}
