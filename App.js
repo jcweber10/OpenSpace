@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 // import { db } from "./config/db"
 import { Location } from "./Location"
+import {HiddenLocation} from "./HiddenLocation";
 
 class HomeScreen extends React.Component {
   render() {
@@ -15,7 +16,7 @@ class HomeScreen extends React.Component {
 
 
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' ,backgroundColor : '#001e4c'}}>
 
         <Image source={pic} style={styles.picTest} />
 
@@ -24,7 +25,7 @@ class HomeScreen extends React.Component {
           style={styles.buttonfinal}
           onPress={() => this.props.navigation.navigate('Details')}
         >
-          <Text style={styles.buttonText2}>Report Status</Text>
+          <Text style={styles.buttonText1}>Report Status</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -41,20 +42,59 @@ class HomeScreen extends React.Component {
 }
 
 class SettingsScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fetzer: {
+        name: "Fetzer",
+        value: 0,
+        visible: 0
+      },
+      rams: {
+        name: "Rams",
+        value: 0,
+        visible: 0
+      },
+      woollen: {
+        name: "Woollen",
+        value: 0,
+        visible: 0
+      },
+      hooker: {
+        name: "Hooker",
+        value: 0,
+        visible: 0
+      },
+      src: {
+        name: "SRC",
+        value: 0,
+        visible: 0
+      }
+    };
+  }
+
+  handlePress(e) {
+    console.log("Button pressed");
+  }
+
+  renderHiddenLocation(location) {
+    return <HiddenLocation
+      name={location} />;
+  }
   render() {
     return (
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+        <ScrollView style={styles.scroll}>
+          <Text style={styles.headerText}>Pick the Location You Want to Know About</Text>
 
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Settings!</Text>
-        <Button
-          title="Go to Home"
-          onPress={() => this.props.navigation.navigate('Home')}
-        />
-        <Button
-          title="Go to Details"
-          onPress={() => this.props.navigation.navigate('Details')}
-        />
-      </View>
+          {this.renderHiddenLocation("Rams")}
+          {this.renderHiddenLocation("Fetzer")}
+          {this.renderHiddenLocation("Woollen")}
+          {this.renderHiddenLocation("Hooker")}
+          {this.renderHiddenLocation("SRC")}
+
+        </ScrollView>
+      </SafeAreaView>
     );
   }
 }
@@ -151,12 +191,12 @@ export default createBottomTabNavigator(
 
         // You can return any component that you like here! We usually use an
         // icon component from react-native-vector-icons
-        return <Ionicons name={iconName} size={25} color={tintColor} />;
+        return <Ionicons name={iconName} size={25} color={'#001e4c'} />;
       },
     }),
     tabBarOptions: {
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
+      activeTintColor: '#001e4c',
+      inactiveTintColor: '#001e4c',
     },
   }
 );
@@ -172,13 +212,16 @@ const styles = StyleSheet.create({
   },
   buttonfinal: {
     backgroundColor: "#33adff",
-    padding: 5,
-    width: 100,
-    height: 100,
+  //  padding: 5,
+  //  width: 100,
+    flex: 1,
+    width: '95%',
+    height: '20%',
     marginLeft: 7,
-    marginTop: 60,
+    marginRight:7,
+    marginTop: 30,
     borderRadius: 5,
-    borderWidth: 7,
+    borderWidth: 0,
     borderColor: "#aaa",
   },
   buttonText2: {
@@ -201,11 +244,12 @@ const styles = StyleSheet.create({
 
   buttonText1: {
     justifyContent: "center",
-    alignItems: "center",
-    fontSize: 15,
-    paddingTop: 25,
+    textAlign: "center",
+    fontSize: 40,
+    paddingTop: 30,
     paddingLeft: 0,
-    paddingBottom: 10
+    paddingBottom: 10,
+    color: 'white'
 
   },
 
