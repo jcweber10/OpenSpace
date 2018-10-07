@@ -23,13 +23,11 @@ export default class Location extends React.Component {
     getVal(val) {
         console.warn(val);
     }
-    makeVis = (event) => {
+    postEntry = (event) => {
         let day = new Date();
         let date = day.getFullYear().toString() + (day.getMonth() > 9 ? "" : "0") + day.getMonth().toString() + (day.getDay() > 9 ? "" : "0") + day.getDay().toString() + (day.getHours() > 9 ? "" : "0") + day.getHours().toString() + (day.getMinutes() > 9 ? "" : "0") + day.getMinutes().toString() + (day.getSeconds() > 9 ? "" : "0") + day.getSeconds().toString();
-        writeNewPost(this.props.name, this.state.number, date);
-        console.log("pressed")
-        console.log(this.props.name)
-        console.log(this.state.number)
+        writeNewEntry(this.props.name, this.state.number, date);
+        console.log(ratingFromQuery());
     }
     render() {
         return (
@@ -37,7 +35,7 @@ export default class Location extends React.Component {
                 <TouchableOpacity
                     title="Press Me"
                     style={styles.button}
-                    onPress={this.makeVis}
+                    onPress={this.postEntry}
                 >
                     <Text style={styles.buttonText}>{this.props.name}</Text>
                 </TouchableOpacity>
@@ -141,7 +139,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export function writeNewPost(location, rating, timestamp) {
+export function writeNewEntry(location, rating, timestamp) {
     // A post entry.
     var postData = {
         location: location,
@@ -160,3 +158,12 @@ export function writeNewPost(location, rating, timestamp) {
 }
 
 export { Location };
+
+let ratingFromQuery = () => {
+    db.ref().on("value", snapshot => {
+        let sum = 0;
+        snapshot.forEach(childSnap => {
+            sum += childSnap().rating;
+        });
+    })
+};
