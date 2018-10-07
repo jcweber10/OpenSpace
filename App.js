@@ -11,6 +11,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import { db } from "./config/db"
+import Location from "./Location"
 
 export default class App extends React.Component {
   constructor(props) {
@@ -75,87 +76,87 @@ export default class App extends React.Component {
   };
 }
 
-export class Location extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      number: 1,
-      name: "test"
-    }
-  }
-  getVal(val) {
-    console.warn(val);
-  }
-  makeVis = (event) => {
-    let day = new Date();
-    let date = day.getFullYear().toString() + (day.getMonth() > 9 ? "" : "0") + day.getMonth().toString() + (day.getDay() > 9 ? "" : "0") + day.getDay().toString() + (day.getHours() > 9 ? "" : "0") + day.getHours().toString() + (day.getMinutes() > 9 ? "" : "0") + day.getMinutes().toString() + (day.getSeconds() > 9 ? "" : "0") + day.getSeconds().toString();
-    writeNewPost(this.props.name, this.state.number, date);
-    console.log("pressed")
-    console.log(this.props.name)
-    console.log(this.state.number)
-  }
-  render() {
-    return (
-      <View >
-        <TouchableOpacity
-          title="Press Me"
-          style={styles.button}
-          onPress={this.makeVis}
-        >
-          <Text style={styles.buttonText}>{this.props.name}</Text>
-        </TouchableOpacity>
+// export class Location extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       number: 1,
+//       name: "test"
+//     }
+//   }
+//   getVal(val) {
+//     console.warn(val);
+//   }
+//   makeVis = (event) => {
+//     let day = new Date();
+//     let date = day.getFullYear().toString() + (day.getMonth() > 9 ? "" : "0") + day.getMonth().toString() + (day.getDay() > 9 ? "" : "0") + day.getDay().toString() + (day.getHours() > 9 ? "" : "0") + day.getHours().toString() + (day.getMinutes() > 9 ? "" : "0") + day.getMinutes().toString() + (day.getSeconds() > 9 ? "" : "0") + day.getSeconds().toString();
+//     writeNewPost(this.props.name, this.state.number, date);
+//     console.log("pressed")
+//     console.log(this.props.name)
+//     console.log(this.state.number)
+//   }
+//   render() {
+//     return (
+//       <View >
+//         <TouchableOpacity
+//           title="Press Me"
+//           style={styles.button}
+//           onPress={this.makeVis}
+//         >
+//           <Text style={styles.buttonText}>{this.props.name}</Text>
+//         </TouchableOpacity>
 
-        <Slider
-          style={styles.slider}
-          step={1}
-          minimumValue={1}
-          maximumValue={10}
-          minimumTrackTintColor={"white"}
-          maximumTrackTintColor={"white"}
-          thumbTintColor={"#fff"}
-          onValueChange={val => this.setState({ number: val })}
-          onSlidingComplete={val => this.getVal(val)}
+//         <Slider
+//           style={styles.slider}
+//           step={1}
+//           minimumValue={1}
+//           maximumValue={10}
+//           minimumTrackTintColor={"white"}
+//           maximumTrackTintColor={"white"}
+//           thumbTintColor={"#fff"}
+//           onValueChange={val => this.setState({ number: val })}
+//           onSlidingComplete={val => this.getVal(val)}
 
-        //height = {0}
+//         //height = {0}
 
-        />
+//         />
 
-        <View style={{ flexDirection: "row" }}>
-          <Text style={styles.leftTick}> 1</Text>
-          <Text style={styles.rightTick}>10</Text>
-        </View>
-      </View>
-    );
-  }
-}
+//         <View style={{ flexDirection: "row" }}>
+//           <Text style={styles.leftTick}> 1</Text>
+//           <Text style={styles.rightTick}>10</Text>
+//         </View>
+//       </View>
+//     );
+//   }
+// }
 
-export class SliderAndSubmit extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <View>
-        <Slider
-          style={styles.slider}
-          step={1}
-          minimumValue={1}
-          maximumValue={10}
-          minimumTrackTintColor={"white"}
-          maximumTrackTintColor={"white"}
-          thumbTintColor={"#fff"}
-        //height = {0}
+// export class SliderAndSubmit extends React.Component {
+//   constructor(props) {
+//     super(props);
+//   }
+//   render() {
+//     return (
+//       <View>
+//         <Slider
+//           style={styles.slider}
+//           step={1}
+//           minimumValue={1}
+//           maximumValue={10}
+//           minimumTrackTintColor={"white"}
+//           maximumTrackTintColor={"white"}
+//           thumbTintColor={"#fff"}
+//         //height = {0}
 
-        />
+//         />
 
-        <View height={0} style={{ flexDirection: "row" }}>
-          <Text style={styles.leftTick}> 1</Text>
-          <Text style={styles.rightTick}>10</Text>
-        </View>
-      </View>
-    )
-  }
-}
+//         <View height={0} style={{ flexDirection: "row" }}>
+//           <Text style={styles.leftTick}> 1</Text>
+//           <Text style={styles.rightTick}>10</Text>
+//         </View>
+//       </View>
+//     )
+//   }
+// }
 
 
 const styles = StyleSheet.create({
@@ -237,7 +238,7 @@ const styles = StyleSheet.create({
 
 
 
-function writeNewPost(location, rating, timestamp) {
+export function writeNewPost(location, rating, timestamp) {
   // A post entry.
   var postData = {
     location: location,
