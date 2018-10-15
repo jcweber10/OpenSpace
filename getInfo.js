@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { db } from "./config/db"
 
-export default class App extends React.Component {
+export default class GetInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -76,7 +76,7 @@ export class Location extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      number: 5,
+      number: Math.floor(Math.random*10)+1,
       name: '',
       color: '#001e4c',
       isVis:false,
@@ -107,7 +107,7 @@ export class Location extends React.Component {
           <Text style={styles.buttonText}>{this.props.name}</Text>
         </TouchableOpacity>
 
-        <Text style = {this.state.isVis ? styles.subTextAnswer: styles.hiddenText}> 5 </Text>
+        <Text style = {this.state.isVis ? styles.subTextAnswer: styles.hiddenText}> Math.random()*10 </Text>
 
         </View>
     );

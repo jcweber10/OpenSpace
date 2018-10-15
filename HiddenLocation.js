@@ -48,7 +48,7 @@ export default class HiddenLocation extends React.Component {
             <Text style={styles.buttonText}>{this.props.name}</Text>
           </TouchableOpacity>
   
-          <Text style = {this.state.isVis ? styles.subTextAnswer: styles.hiddenText}> 5 </Text>
+          <Text style = {this.state.isVis ? styles.subTextAnswer: styles.hiddenText}> {Math.floor(Math.random()*10)+1} </Text>
   
           </View>
       );
