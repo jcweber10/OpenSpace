@@ -2,9 +2,8 @@ import React from 'react';
 import { Button, Text, View, TouchableOpacity, StyleSheet, Image, ScrollView, Slider, SliderComponent, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-// import { db } from "./config/db"
 import { Location } from "./Location"
-import {HiddenLocation} from "./HiddenLocation";
+import { HiddenLocation } from "./HiddenLocation";
 console.disableYellowBox = true;
 class HomeScreen extends React.Component {
   render() {
@@ -16,23 +15,23 @@ class HomeScreen extends React.Component {
 
 
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' ,backgroundColor : '#001e4c'}}>
+      <View style={styles.homeScreen}>
 
-        <Image source={pic} style={styles.picTest} />
+        <Image source={pic} style={styles.logo} />
 
 
         <TouchableOpacity
-          style={styles.buttonfinal}
+          style={styles.button}
           onPress={() => this.props.navigation.navigate('Details')}
         >
-          <Text style={styles.buttonText1}>Report Status</Text>
+          <Text style={styles.buttonText}>Report Status</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.buttonfinal}
+          style={styles.button}
           onPress={() => this.props.navigation.navigate('Settings')}
         >
-          <Text style={styles.buttonText1}>Get Status</Text>
+          <Text style={styles.buttonText}>Get Status</Text>
         </TouchableOpacity>
 
 
@@ -203,37 +202,21 @@ export default createBottomTabNavigator(
 
 const styles = StyleSheet.create({
 
-  picTest: {
+  logo: {
     width: 200,
     height: 200,
     borderWidth: 7,
     justifyContent: "center",
-    alignSelf: "center"
+    alignSelf: "center",
+    marginTop: '10%',
+    marginBottom: '2%'
   },
-  buttonfinal: {
-    backgroundColor: "#33adff",
-  //  padding: 5,
-  //  width: 100,
-    flex: 1,
-    width: '95%',
-    height: '20%',
-    marginLeft: 7,
-    marginRight:7,
-    marginTop: 30,
-    borderRadius: 5,
-    borderWidth: 0,
-    borderColor: "#aaa",
+  button: {
+    backgroundColor: "#5eb4ff",
+    margin: '2%',
+    width: '80%',
+    borderRadius: 10,
   },
-  buttonText2: {
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: 15,
-    paddingTop: 25,
-    paddingLeft: 15,
-    paddingBottom: 15
-
-  },
-
   headerText: {
     fontSize: 25,
     textAlign: "center",
@@ -241,34 +224,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20
   },
-
-  buttonText1: {
-    justifyContent: "center",
-    textAlign: "center",
-    fontSize: 40,
-    paddingTop: 30,
-    paddingLeft: 0,
-    paddingBottom: 10,
-    color: 'white'
-
-  },
-
-
-
   container: {
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center"
-  },
-  button: {
-    alignItems: "center",
-    backgroundColor: "#5eb4ff",
-    padding: 2,
-    marginBottom: 10,
-    borderRadius: 5,
-    marginLeft: "4%",
-    marginRight: "4%"
   },
   submitButton: {
     alignItems: "center",
@@ -291,7 +251,8 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 27,
     color: "white",
-    textAlign : 'center',
+    textAlign: 'center',
+    padding: '5%',
     // marginBottom : 5
   },
   subText: {
@@ -322,5 +283,13 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "right"
     // justifyContent: 'space-between'
+  },
+  homeScreen: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: '#001e4c',
+    height: '100%',
   }
 })

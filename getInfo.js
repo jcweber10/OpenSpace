@@ -7,7 +7,6 @@ import {
   SafeAreaView,
   TouchableOpacity
 } from "react-native";
-import { db } from "./config/db"
 
 export default class GetInfo extends React.Component {
   constructor(props) {
@@ -41,9 +40,6 @@ export default class GetInfo extends React.Component {
     };
   }
 
-  handlePress(e) {
-    console.log("Button pressed");
-  }
 
   renderLocation(location) {
     return <Location
@@ -63,53 +59,6 @@ export default class GetInfo extends React.Component {
 
         </ScrollView>
       </SafeAreaView>
-    );
-  }
-
-
-  changeDimensions = () => {
-    this.setState({ height: 0 }, { width: 0 });
-  };
-}
-
-export class Location extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      number: Math.floor(Math.random*10)+1,
-      name: '',
-      color: '#001e4c',
-      isVis:false,
-    }
-  }
-  getVal(val) {
-    //console.warn(val);
-  }
-  makeVis = (event) => {
-    this.setState({
-      number: this.state.number,
-      isVis:!this.state.isVis,
-    })
-
-    //
-    console.log("pressed")
-    console.log(this.state)
-    console.log(this.state.number)
-  }
-  render() {
-    return (
-      <View >
-        <TouchableOpacity
-          title="Press Me"
-          style={styles.button}
-          onPress={this.makeVis}
-        >
-          <Text style={styles.buttonText}>{this.props.name}</Text>
-        </TouchableOpacity>
-
-        <Text style = {this.state.isVis ? styles.subTextAnswer: styles.hiddenText}> Math.random()*10 </Text>
-
-        </View>
     );
   }
 }
@@ -154,14 +103,14 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 27,
     color: "white",
-    textAlign : 'center',
+    textAlign: 'center',
     // marginBottom : 5
   },
 
   hiddenText: {
-    height:0,
+    height: 0,
   },
-  subTextAnswer:{
+  subTextAnswer: {
     color: "white",
     textAlign: 'center',
     marginBottom: 5,
@@ -174,5 +123,5 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
 
-  
+
 });

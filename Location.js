@@ -3,11 +3,7 @@ import {
     StyleSheet,
     Text,
     View,
-    ScrollView,
     Slider,
-    SliderComponent,
-    SafeAreaView,
-    Button,
     TouchableOpacity
 } from "react-native";
 
@@ -27,7 +23,7 @@ export default class Location extends React.Component {
         let day = new Date();
         let date = day.getFullYear().toString() + (day.getMonth() > 9 ? "" : "0") + day.getMonth().toString() + (day.getDay() > 9 ? "" : "0") + day.getDay().toString() + (day.getHours() > 9 ? "" : "0") + day.getHours().toString() + (day.getMinutes() > 9 ? "" : "0") + day.getMinutes().toString() + (day.getSeconds() > 9 ? "" : "0") + day.getSeconds().toString();
         writeNewEntry(this.props.name, this.state.number, date);
-        // console.log(ratingFromQuery());
+        console.log(ratingFromQuery());
     }
     render() {
         return (
@@ -160,10 +156,11 @@ export function writeNewEntry(location, rating, timestamp) {
 export { Location };
 
 let ratingFromQuery = () => {
-    db.ref().on("value", snapshot => {
-        let sum = 0;
-        snapshot.forEach(childSnap => {
-            sum += childSnap().rating;
-        });
-    })
+    // db.ref().on("value", snapshot => {
+    //     let sum = 0;
+    //     snapshot.forEach(childSnap => {
+    //         sum += childSnap().rating;
+    //     });
+    // })
+    return 5;
 };
