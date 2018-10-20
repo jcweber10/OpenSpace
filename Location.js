@@ -24,12 +24,6 @@ export default class Location extends React.Component {
         let day = new Date();
         let date = day.getFullYear().toString() + (day.getMonth() > 9 ? "" : "0") + day.getMonth().toString() + (day.getDay() > 9 ? "" : "0") + day.getDay().toString() + (day.getHours() > 9 ? "" : "0") + day.getHours().toString() + (day.getMinutes() > 9 ? "" : "0") + day.getMinutes().toString() + (day.getSeconds() > 9 ? "" : "0") + day.getSeconds().toString();
         writeNewEntry(this.props.name, this.state.number, date);
-
-        console.log(lastRatingOfLocation('Rams'));
-        // db.ref().orderByKey().once("child_added", snapshot => {
-
-        //     console.log(snapshot.val().child('entries').orderByChild('location'));
-        // });
     }
     render() {
         return (
@@ -159,13 +153,6 @@ export function writeNewEntry(location, rating, timestamp) {
     return db.ref().update(updates);
 }
 
-export let lastRatingOfLocation = (locName) => {
-    let filtered = db.ref().child("entries").orderByChild("location").equalTo(locName).limitToLast(1);
-    let rating;
-    filtered.on("child_added", snapshot => {
-        rating = snapshot.val().rating;
-    });
-    return rating;
-}
+
 
 export { Location };
