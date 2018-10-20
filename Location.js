@@ -1,4 +1,5 @@
 import React from "react";
+import { db } from "./config/db"
 import {
     StyleSheet,
     Text,
@@ -7,7 +8,6 @@ import {
     TouchableOpacity
 } from "react-native";
 
-import { db } from "./config/db"
 export default class Location extends React.Component {
     constructor(props) {
         super(props);
@@ -19,11 +19,17 @@ export default class Location extends React.Component {
     getVal(val) {
         console.warn(val);
     }
+
     postEntry = (event) => {
         let day = new Date();
         let date = day.getFullYear().toString() + (day.getMonth() > 9 ? "" : "0") + day.getMonth().toString() + (day.getDay() > 9 ? "" : "0") + day.getDay().toString() + (day.getHours() > 9 ? "" : "0") + day.getHours().toString() + (day.getMinutes() > 9 ? "" : "0") + day.getMinutes().toString() + (day.getSeconds() > 9 ? "" : "0") + day.getSeconds().toString();
         writeNewEntry(this.props.name, this.state.number, date);
-        console.log(ratingFromQuery());
+
+        console.log(lastRatingOfLocation('Rams'));
+        // db.ref().orderByKey().once("child_added", snapshot => {
+
+        //     console.log(snapshot.val().child('entries').orderByChild('location'));
+        // });
     }
     render() {
         return (
@@ -137,30 +143,29 @@ const styles = StyleSheet.create({
 
 export function writeNewEntry(location, rating, timestamp) {
     // A post entry.
-    var postData = {
+    let postData = {
         location: location,
         rating: rating,
         timestamp: timestamp,
     };
 
     // Get a key for a new Post.
-    var newPostKey = db.ref().child('entries').push().key;
+    let newPostKey = db.ref().child('entries').push().key;
 
     // Write the new post's data simultaneously in the posts list and the user's post list.
-    var updates = {};
+    let updates = {};
     updates['/entries/' + newPostKey] = postData;
 
     return db.ref().update(updates);
 }
 
-export { Location };
+export let lastRatingOfLocation = (locName) => {
+    let filtered = db.ref().child("entries").orderByChild("location").equalTo(locName).limitToLast(1);
+    let rating;
+    filtered.on("child_added", snapshot => {
+        rating = snapshot.val().rating;
+    });
+    return rating;
+}
 
-let ratingFromQuery = () => {
-    // db.ref().on("value", snapshot => {
-    //     let sum = 0;
-    //     snapshot.forEach(childSnap => {
-    //         sum += childSnap().rating;
-    //     });
-    // })
-    return 5;
-};
+export { Location };
