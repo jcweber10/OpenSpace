@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
 });
 
 export let lastRatingOfLocation = (locName) => {
-  let filtered = db.ref().child("entries").orderByChild("location").equalTo(locName).limitToLast(1);
+  let filtered = db.ref().child("entries").orderByChild("location").equalTo(locName).limitToLast(3);
   let rating;
   filtered.on("child_added", snapshot => {
     rating = snapshot.val().rating;
