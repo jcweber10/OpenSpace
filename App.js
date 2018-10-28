@@ -154,11 +154,6 @@ class MakeReport extends React.Component {
       </SafeAreaView>
     );
   }
-
-
-  changeDimensions = () => {
-    this.setState({ height: 0 }, { width: 0 });
-  }
 }
 
 
