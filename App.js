@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button, Text, View, TouchableOpacity, StyleSheet, Image, ScrollView, Slider, SliderComponent, SafeAreaView } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, Image, ScrollView, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-import { Location } from "./Location"
-import { HiddenLocation } from "./HiddenLocation";
+import { LocationAndSlider } from "./components/LocationAndSlider"
+import { LocationAndHiddenRating } from "./components/LocationAndHiddenRating";
 console.disableYellowBox = true;
 class HomeScreen extends React.Component {
   render() {
@@ -77,7 +77,7 @@ class GetReport extends React.Component {
   }
 
   renderHiddenLocation(location) {
-    return <HiddenLocation
+    return <LocationAndHiddenRating
       name={location} />;
   }
   render() {
@@ -135,7 +135,7 @@ class MakeReport extends React.Component {
   }
 
   renderLocation(location) {
-    return <Location
+    return <LocationAndSlider
       name={location} />;
   }
   render() {

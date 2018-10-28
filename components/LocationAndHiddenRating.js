@@ -3,17 +3,12 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  Slider,
-  SliderComponent,
-  SafeAreaView,
-  Button,
   TouchableOpacity
 } from "react-native";
 
-import { db } from "./config/db"
+import { db } from "../config/db"
 
-export default class HiddenLocation extends React.Component {
+export default class LocationAndHiddenRating extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,9 +37,7 @@ export default class HiddenLocation extends React.Component {
         >
           <Text style={styles.buttonText}>{this.props.name}</Text>
         </TouchableOpacity>
-
         <Text style={this.state.isVis ? styles.subTextAnswer : styles.hiddenText}> {lastRatingOfLocation(this.props.name)} </Text>
-
       </View>
     );
   }
@@ -91,7 +84,6 @@ const styles = StyleSheet.create({
     fontSize: 27,
     color: "white",
     textAlign: 'center',
-    // marginBottom : 5
   },
 
   hiddenText: {
@@ -120,4 +112,4 @@ export let lastRatingOfLocation = (locName) => {
   return rating;
 }
 
-export { HiddenLocation };
+export { LocationAndHiddenRating };

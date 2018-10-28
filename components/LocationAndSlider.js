@@ -1,5 +1,5 @@
 import React from "react";
-import { db } from "./config/db"
+import { db } from "../config/db"
 import {
     StyleSheet,
     Text,
@@ -8,7 +8,7 @@ import {
     TouchableOpacity
 } from "react-native";
 
-export default class Location extends React.Component {
+export default class LocationAndSlider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -46,9 +46,6 @@ export default class Location extends React.Component {
                     thumbTintColor={"#fff"}
                     onValueChange={val => this.setState({ number: val })}
                     onSlidingComplete={val => this.getVal(val)}
-
-                //height = {0}
-
                 />
 
                 <View style={{ flexDirection: "row" }}>
@@ -155,4 +152,4 @@ export function writeNewEntry(location, rating, timestamp) {
 
 
 
-export { Location };
+export { LocationAndSlider };
