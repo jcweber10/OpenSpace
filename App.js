@@ -1,10 +1,11 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, Image, ScrollView, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createSwitchNavigator, createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { LocationAndSlider } from "./components/LocationAndSlider"
 import { LocationAndHiddenRating } from "./components/LocationAndHiddenRating";
 console.disableYellowBox = true;
+const NAVY = '#001e4c'
 class HomeScreen extends React.Component {
   render() {
 
@@ -22,14 +23,14 @@ class HomeScreen extends React.Component {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => this.props.navigation.navigate('Details')}
+          onPress={() => this.props.navigation.navigate('ReportStatus')}
         >
           <Text style={styles.buttonText}>Report Status</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => this.props.navigation.navigate('Settings')}
+          onPress={() => this.props.navigation.navigate('GetStatus')}
         >
           <Text style={styles.buttonText}>Get Status</Text>
         </TouchableOpacity>
@@ -40,7 +41,7 @@ class HomeScreen extends React.Component {
   }
 }
 
-class GetReport extends React.Component {
+class GetStatus extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -76,29 +77,35 @@ class GetReport extends React.Component {
     console.log("Button pressed");
   }
 
-  renderHiddenLocation(location) {
+  renderLocationAndHiddenRating(location) {
     return <LocationAndHiddenRating
       name={location} />;
   }
   render() {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+      <SafeAreaView style={styles.safeArea}>
         <ScrollView style={styles.scroll}>
           <Text style={styles.headerText}>Pick the Location You Want to Know About</Text>
 
-          {this.renderHiddenLocation("Rams")}
-          {this.renderHiddenLocation("Fetzer")}
-          {this.renderHiddenLocation("Woollen")}
-          {this.renderHiddenLocation("Hooker")}
-          {this.renderHiddenLocation("SRC")}
+          {this.renderLocationAndHiddenRating("Rams")}
+          {this.renderLocationAndHiddenRating("Fetzer")}
+          {this.renderLocationAndHiddenRating("Woollen")}
+          {this.renderLocationAndHiddenRating("Hooker")}
+          {this.renderLocationAndHiddenRating("SRC")}
 
         </ScrollView>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => this.props.navigation.navigate('Home')}
+        >
+          <Text style={styles.buttonText}>Go Home</Text>
+        </TouchableOpacity>
       </SafeAreaView>
     );
   }
 }
 
-class MakeReport extends React.Component {
+class ReportStatus extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -130,27 +137,33 @@ class MakeReport extends React.Component {
     };
   }
 
+
   handlePress(e) {
     console.log("Button pressed");
   }
 
-  renderLocation(location) {
+  renderLocationAndSlider(location) {
     return <LocationAndSlider
       name={location} />;
   }
   render() {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+      <SafeAreaView style={styles.safeArea}>
         <ScrollView style={styles.scroll}>
           <Text style={styles.headerText}>Pick the Location You Want to Tell About</Text>
 
-          {this.renderLocation("Rams")}
-          {this.renderLocation("Fetzer")}
-          {this.renderLocation("Woollen")}
-          {this.renderLocation("Hooker")}
-          {this.renderLocation("SRC")}
-
+          {this.renderLocationAndSlider("Rams")}
+          {this.renderLocationAndSlider("Fetzer")}
+          {this.renderLocationAndSlider("Woollen")}
+          {this.renderLocationAndSlider("Hooker")}
+          {this.renderLocationAndSlider("SRC")}
         </ScrollView>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => this.props.navigation.navigate('Home')}
+        >
+          <Text style={styles.buttonText}>Go Home</Text>
+        </TouchableOpacity>
       </SafeAreaView>
     );
   }
@@ -158,40 +171,39 @@ class MakeReport extends React.Component {
 
 
 const HomeStack = createStackNavigator({
-  Home: { screen: HomeScreen },
-  Details: { screen: MakeReport },
-});
+   Home:{
+     screen:HomeScreen,
+     navigationOptions:{
+      header:null,
+    }
+   },
+  });
+  const GetStatusStack = createStackNavigator({
+    GetStatus:{
+      screen:GetStatus,
+      navigationOptions:{
+       header:null,
+       footer:null
+     }
+    },
+   });
+   const ReportStatusStack = createStackNavigator({
+    ReportStatus:{
+      screen:ReportStatus,
+      navigationOptions:{
+       header:null,
+     }
+    },
+   });
 
-const SettingsStack = createStackNavigator({
-  Settings: { screen: GetReport },
-  Details: { screen: MakeReport },
-});
-
-export default createBottomTabNavigator(
+export default createSwitchNavigator(
   {
-    Home: { screen: HomeStack },
-    Settings: { screen: SettingsStack },
+    Home: HomeStack,
+    GetStatus: GetStatusStack,
+    ReportStatus: ReportStatusStack,
   },
   {
-    navigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, tintColor }) => {
-        const { routeName } = navigation.state;
-        let iconName;
-        if (routeName === 'Home') {
-          iconName = `ios-information-circle${focused ? '' : '-outline'}`;
-        } else if (routeName === 'Settings') {
-          iconName = `ios-options${focused ? '' : '-outline'}`;
-        }
-
-        // You can return any component that you like here! We usually use an
-        // icon component from react-native-vector-icons
-        return <Ionicons name={iconName} size={25} color={'#001e4c'} />;
-      },
-    }),
-    tabBarOptions: {
-      activeTintColor: '#001e4c',
-      inactiveTintColor: '#001e4c',
-    },
+    initialRouteName:'Home'
   }
 );
 
@@ -241,7 +253,7 @@ const styles = StyleSheet.create({
   },
   scroll: {
     paddingVertical: 20,
-    backgroundColor: "#001e4c"
+    backgroundColor: NAVY,
   },
   buttonText: {
     fontSize: 27,
@@ -284,7 +296,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#001e4c',
+    backgroundColor: NAVY,
     height: '100%',
+  },
+  safeArea:{
+    flex: 1, 
+    backgroundColor: NAVY,
+     alignItems:'center' 
   }
 })
