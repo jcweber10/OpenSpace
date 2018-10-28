@@ -95,7 +95,7 @@ class GetStatus extends React.Component {
 
         </ScrollView>
         <TouchableOpacity
-          style={styles.locationButton}
+          style={styles.goHomeButton}
           onPress={() => this.props.navigation.navigate('Home')}
         >
           <Text style={styles.buttonText}>Go Home</Text>
@@ -159,7 +159,7 @@ class ReportStatus extends React.Component {
           {this.renderLocationAndSlider("SRC")}
         </ScrollView>
         <TouchableOpacity
-          style={styles.locationButton}
+          style={styles.goHomeButton}
           onPress={() => this.props.navigation.navigate('Home')}
         >
           <Text style={styles.buttonText}>Go Home</Text>
@@ -231,6 +231,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginLeft: "4%",
     marginRight: "4%"
+  },
+  goHomeButton:{
+    backgroundColor: "#5eb4ff",
+    // borderTopLeftRadius:10,
+    // borderTopRightRadius:10,
+    width:'100%',
+    paddingTop: 0,
   },
   headerText: {
     fontSize: 25,
