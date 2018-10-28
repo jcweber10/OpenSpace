@@ -30,7 +30,7 @@ export default class LocationAndSlider extends React.Component {
             <View >
                 <TouchableOpacity
                     title="Press Me"
-                    style={styles.button}
+                    style={styles.locationButton}
                     onPress={this.postEntry}
                 >
                     <Text style={styles.buttonText}>{this.props.name}</Text>
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center"
     },
-    button: {
+    locationButton: {
         alignItems: "center",
         backgroundColor: "#5eb4ff",
         padding: 2,

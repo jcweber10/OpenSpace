@@ -22,14 +22,14 @@ class HomeScreen extends React.Component {
 
 
         <TouchableOpacity
-          style={styles.button}
+          style={styles.homeScreenButton}
           onPress={() => this.props.navigation.navigate('ReportStatus')}
         >
           <Text style={styles.buttonText}>Report Status</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.button}
+          style={styles.homeScreenButton}
           onPress={() => this.props.navigation.navigate('GetStatus')}
         >
           <Text style={styles.buttonText}>Get Status</Text>
@@ -95,7 +95,7 @@ class GetStatus extends React.Component {
 
         </ScrollView>
         <TouchableOpacity
-          style={styles.button}
+          style={styles.locationButton}
           onPress={() => this.props.navigation.navigate('Home')}
         >
           <Text style={styles.buttonText}>Go Home</Text>
@@ -159,7 +159,7 @@ class ReportStatus extends React.Component {
           {this.renderLocationAndSlider("SRC")}
         </ScrollView>
         <TouchableOpacity
-          style={styles.button}
+          style={styles.locationButton}
           onPress={() => this.props.navigation.navigate('Home')}
         >
           <Text style={styles.buttonText}>Go Home</Text>
@@ -208,7 +208,6 @@ export default createSwitchNavigator(
 );
 
 const styles = StyleSheet.create({
-
   logo: {
     width: 200,
     height: 200,
@@ -218,11 +217,20 @@ const styles = StyleSheet.create({
     marginTop: '10%',
     marginBottom: '2%'
   },
-  button: {
+  homeScreenButton: {
     backgroundColor: "#5eb4ff",
     margin: '2%',
     width: '80%',
     borderRadius: 10,
+  },
+  locationButton: {
+    alignItems: "center",
+    backgroundColor: "#5eb4ff",
+    padding: 2,
+    marginBottom: 10,
+    borderRadius: 5,
+    marginLeft: "4%",
+    marginRight: "4%"
   },
   headerText: {
     fontSize: 25,

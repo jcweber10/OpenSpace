@@ -32,7 +32,7 @@ export default class LocationAndHiddenRating extends React.Component {
       <View >
         <TouchableOpacity
           title="Press Me"
-          style={styles.button}
+          style={styles.locationButton}
           onPress={this.makeVis}
         >
           <Text style={styles.buttonText}>{this.props.name}</Text>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  button: {
+  locationButton: {
     alignItems: "center",
     backgroundColor: "#5eb4ff",
     padding: 2,
@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
     marginLeft: "4%",
     marginRight: "4%"
   },
-
   submitButton: {
     alignItems: "center",
     backgroundColor: "#5eb4ff",
@@ -70,12 +69,10 @@ const styles = StyleSheet.create({
     marginLeft: "30%",
     marginRight: "30%"
   },
-
   slider: {
     flex: 1,
     alignItems: "center"
   },
-
   scroll: {
     paddingVertical: 20,
     backgroundColor: "#001e4c"
